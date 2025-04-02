@@ -1,0 +1,19 @@
+<p>user works!</p>
+
+<mat-form-field>
+  <mat-select [formControl]="position">
+    @for (positionOption of positionOptions; track positionOption) {
+    <mat-option [value]="positionOption">{{ positionOption }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<button
+  (click)="openDialog()"
+  class="add-user-btn"
+  mat-fab
+  matTooltip="Add user"
+  [matTooltipPosition]="position.value!"
+>
+  <mat-icon>add</mat-icon>
+</button>
