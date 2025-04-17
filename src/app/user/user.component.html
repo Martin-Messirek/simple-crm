@@ -1,4 +1,23 @@
-<p>user works!</p>
+<mat-card-content>
+	<table class="user-table">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>City</th>
+		</tr>
+		<tr *ngFor="let user of allUsers">
+			<td>
+				<a [routerLink]="['/user', user.id]">{{ user.firstName }} {{ user.lastName }}</a>
+			</td>
+			<td>
+				<a [routerLink]="['/user', user.id]">{{ user.email }}</a>
+			</td>
+			<td>
+				<a [routerLink]="['/user', user.id]">{{ user.city }}</a>
+			</td>
+		</tr>
+	</table>
+</mat-card-content>
 
 <!-- <mat-form-field>
   <mat-select [formControl]="position">
@@ -8,12 +27,6 @@
   </mat-select>
 </mat-form-field> -->
 
-<button
-  (click)="openDialog()"
-  class="add-user-btn"
-  mat-fab
-  matTooltip="Add user"
-  [matTooltipPosition]="position.value!"
->
-  <mat-icon>add</mat-icon>
+<button (click)="openDialog()" class="add-user-btn" mat-fab matTooltip="Add user" [matTooltipPosition]="position.value!">
+	<mat-icon>add</mat-icon>
 </button>

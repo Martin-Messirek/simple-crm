@@ -1,3 +1,19 @@
+.logo-container {
+  padding: 8px;
+
+  img {
+    width: 80px;
+    height: 56px;
+    background-size: cover;
+  }
+
+  div {
+    padding-left: 20px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
 .mat-drawer-container {
   height: 100vh;
 }
@@ -57,5 +73,6 @@ mat-toolbar {
 
 .router-container {
   padding-left: 56px;
+  padding-right: 56px;
   padding-top: 16px;
 }
