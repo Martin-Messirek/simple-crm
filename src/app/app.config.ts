@@ -13,16 +13,12 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 export const firebaseApp = initializeApp(firebaseConfig);
 
 export const firebaseProviders = [
-  provideFirebaseApp(() => firebaseApp),
-  provideFirestore(() => getFirestore()),
-  // provideAuth(), // Optional, nur wenn du Auth benötigst
-  // provideFirestore(), // Optional, nur wenn du Firestore benötigst
+	provideFirebaseApp(() => firebaseApp),
+	provideFirestore(() => getFirestore()),
+	// provideAuth(), // Optional, nur wenn du Auth benötigst
+	// provideFirestore(), // Optional, nur wenn du Firestore benötigst
 ];
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideAnimationsAsync(),
-    ...firebaseProviders,
-  ],
+	providers: [provideRouter(routes), provideAnimationsAsync(), ...firebaseProviders],
 };

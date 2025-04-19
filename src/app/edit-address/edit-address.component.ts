@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { User } from '../../models/user.class';
+import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
 
 @Component({
 	selector: 'app-edit-address',
@@ -30,9 +31,28 @@ import { User } from '../../models/user.class';
 })
 export class EditAddressComponent {
 	user: User = new User();
+	userId: string = '';
 	loading = false;
 
 	public dialogRef = inject(MatDialogRef);
+	private firestore = inject(Firestore);
 
-	saveUser() {}
+	saveUser() {
+		this.loading = true;
+		const userDocRef = doc(this.firestore, `users/${this.userId}`);
+
+		updateDoc(userDocRef, this.user.toJSON())
+			.then(() => this.handleSuccess())
+			.catch((error) => this.handleError(error));
+	}
+
+	handleSuccess() {
+		this.loading = false;
+		this.dialogRef.close();
+	}
+
+	handleError(error: unknown) {
+		this.loading = false;
+		console.error('Error updating user: ', error);
+	}
 }

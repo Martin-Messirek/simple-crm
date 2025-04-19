@@ -50,21 +50,21 @@ export class DialogAddUserComponent {
 
 	saveUser() {
 		this.loading = true;
-		console.log('Loading:', this.loading); // Überprüfen, ob loading true ist
-
 		this.user.birthDate = this.birthDate.getTime() | 0;
-		console.log('user', this.user);
-
 		const userCollection = collection(this.firestore, 'users'); //users: frei gewählt
 
 		addDoc(userCollection, this.user.toJSON())
-			.then((result) => {
-				this.loading = false;
-				console.log('Successfully added user', result);
-				this.dialogRef.close();
-			})
-			.catch((error) => {
-				console.log('Error adding user: ', error);
-			});
+			.then(() => this.handleSuccess())
+			.catch((error) => this.handleError(error));
+	}
+
+	handleSuccess() {
+		this.loading = false;
+		this.dialogRef.close();
+	}
+
+	handleError(error: unknown) {
+		this.loading = false;
+		console.error('Error adding user: ', error);
 	}
 }
