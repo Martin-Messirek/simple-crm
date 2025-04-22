@@ -24,6 +24,7 @@ describe('UserComponent', () => {
 	});
 
 	it('should create', () => {
+		// (expect(component) as jasmine.Matchers<any>).toBeTruthy();
 		expect(component).toBeTruthy();
 	});
 });
